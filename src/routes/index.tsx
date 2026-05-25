@@ -41,7 +41,7 @@ function Index() {
             { icon: MessageSquareText, title: "Text Scanner", desc: "Paste WhatsApp, Telegram or email messages to flag high-risk language and known scam tactics.", to: "/text-scanner" },
             { icon: Users, title: "Community Reports", desc: "See real scams reported by students. Submit your own to help protect others.", to: "/reports" },
           ].map((f) => (
-            <Link key={f.title} to={f.to} className="group rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur hover:border-primary/50 hover:bg-card transition">
+            <Link key={f.title} to={f.to} className="group glass rounded-2xl p-6 hover:border-primary/50 hover:bg-card transition">
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary">
                 <f.icon className="h-5 w-5" />
               </div>
