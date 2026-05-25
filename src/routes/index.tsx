@@ -102,7 +102,7 @@ function Index() {
                 {feed.map((r) => (
                   <li key={r.id} className="p-4 flex items-center justify-between gap-3 hover:bg-cyan-400/5 transition-all duration-500">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="h-9 w-9 rounded-lg bg-destructive/15 text-destructive flex items-center justify-center shrink-0"><Building2 className="h-4.5 w-4.5" /></div>
+                      <div className="h-9 w-9 rounded-lg bg-destructive/15 text-destructive flex items-center justify-center shrink-0"><Building2 className="h-4 w-4" /></div>
                       <div className="min-w-0">
                         <div className="font-medium truncate">{r.company_name}</div>
                         <div className="text-xs text-muted-foreground">on {r.platform} · {formatDistanceToNow(new Date(r.created_at), { addSuffix: true })}</div>
