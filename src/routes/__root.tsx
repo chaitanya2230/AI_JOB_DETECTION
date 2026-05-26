@@ -74,6 +74,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <Outlet />
+        <AIAssistant />
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>
