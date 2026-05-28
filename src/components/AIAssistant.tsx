@@ -264,7 +264,7 @@ export function AIAssistant() {
 
           {/* Input */}
           <div className="p-3 pt-1 border-t border-[color-mix(in_oklab,var(--cyber-cyan)_20%,transparent)]">
-            <div className="glass-input rounded-xl flex items-center gap-2 px-3 py-2">
+            <div className="rounded-xl flex items-center gap-2 px-3 py-2 bg-[#0B1220] border border-[color-mix(in_oklab,var(--cyber-cyan)_35%,transparent)] focus-within:border-primary/70 focus-within:shadow-[0_0_0_3px_color-mix(in_oklab,var(--cyber-cyan)_20%,transparent)] transition">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
