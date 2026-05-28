@@ -202,19 +202,19 @@ export function AIAssistant() {
               <div key={m.id} className={`flex flex-col ${m.role === "user" ? "items-end" : "items-start"}`}>
                 <div
                   className={[
-                    "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed whitespace-pre-wrap",
+                    "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-relaxed whitespace-pre-wrap shadow-sm",
                     m.role === "user"
-                      ? "bg-primary/15 text-foreground border border-primary/30"
+                      ? "bg-primary/25 text-foreground border border-primary/50"
                       : m.danger
                         ? "border text-foreground"
-                        : "bg-muted/40 text-foreground border border-border",
+                        : "bg-[#1E293B] text-foreground border border-[color-mix(in_oklab,var(--cyber-cyan)_25%,transparent)]",
                   ].join(" ")}
                   style={
                     m.danger
                       ? {
-                          background: "color-mix(in oklab, var(--cyber-crimson) 14%, transparent)",
-                          borderColor: "color-mix(in oklab, var(--cyber-crimson) 55%, transparent)",
-                          boxShadow: "0 0 24px color-mix(in oklab, var(--cyber-crimson) 28%, transparent)",
+                          background: "color-mix(in oklab, var(--cyber-crimson) 22%, #1E293B)",
+                          borderColor: "color-mix(in oklab, var(--cyber-crimson) 65%, transparent)",
+                          boxShadow: "0 0 24px color-mix(in oklab, var(--cyber-crimson) 30%, transparent)",
                         }
                       : undefined
                   }
