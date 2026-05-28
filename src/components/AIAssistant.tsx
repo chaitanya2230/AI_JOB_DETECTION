@@ -163,10 +163,14 @@ export function AIAssistant() {
       {/* Chat window */}
       {open && (
         <div
-          className="fixed bottom-24 right-4 sm:right-6 z-50 w-[min(400px,calc(100vw-2rem))] h-[min(620px,calc(100vh-8rem))] glass rounded-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300"
+          className="fixed bottom-24 right-4 sm:right-6 z-50 w-[min(400px,calc(100vw-2rem))] h-[min(620px,calc(100vh-8rem))] rounded-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300"
           style={{
+            background: "#0F172A",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
+            border: "1px solid color-mix(in oklab, var(--cyber-cyan) 45%, transparent)",
             boxShadow:
-              "0 0 0 1px color-mix(in oklab, var(--cyber-cyan) 35%, transparent), 0 20px 60px -20px color-mix(in oklab, var(--cyber-cyan) 45%, transparent)",
+              "0 0 0 1px color-mix(in oklab, var(--cyber-cyan) 35%, transparent), 0 24px 60px -20px rgba(0,0,0,0.85)",
           }}
         >
           {/* Header */}
