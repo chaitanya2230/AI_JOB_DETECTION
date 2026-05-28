@@ -233,7 +233,7 @@ export function AIAssistant() {
 
             {sending && (
               <div className="flex items-start">
-                <div className="bg-muted/40 border border-border rounded-2xl px-3.5 py-2.5 text-[13px] inline-flex items-center gap-2 text-muted-foreground">
+                <div className="bg-[#1E293B] border border-[color-mix(in_oklab,var(--cyber-cyan)_25%,transparent)] rounded-2xl px-3.5 py-2.5 text-[13px] inline-flex items-center gap-2 text-foreground/80">
                   <span className="flex gap-1">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "0ms" }} />
                     <span className="h-1.5 w-1.5 rounded-full bg-primary animate-bounce" style={{ animationDelay: "150ms" }} />
