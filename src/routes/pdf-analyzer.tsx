@@ -4,8 +4,6 @@ import { UploadCloud, FileText, AlertTriangle, ShieldCheck } from "lucide-react"
 import { Navbar } from "@/components/Navbar";
 import { BackToDashboard } from "@/components/BackToDashboard";
 import { CyberBg } from "@/components/CyberBg";
-import { Button } from "@/components/ui/button";
-import { RadarRing } from "@/components/RadarRing";
 import { RiskGauge } from "@/components/RiskGauge";
 import { scanText } from "@/lib/scan-engine";
 
