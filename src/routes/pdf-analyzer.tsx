@@ -13,7 +13,6 @@ export const Route = createFileRoute("/pdf-analyzer")({
 });
 
 type ScanResult = ReturnType<typeof scanText> & { file: { name: string; size: number } };
-];
 
 async function readPdfText(file: File): Promise<string> {
   // Lightweight extraction: read raw bytes, strip non-printables.
