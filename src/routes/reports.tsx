@@ -61,8 +61,8 @@ function Reports() {
     <div>
       <CyberBg />
       <Navbar />
-      <BackToDashboard />
       <main className="mx-auto max-w-5xl px-6 py-12">
+        <div className="mb-6"><BackToDashboard /></div>
         <div className="flex items-start justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center gap-3">
