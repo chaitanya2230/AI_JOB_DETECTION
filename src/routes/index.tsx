@@ -89,7 +89,7 @@ function Index() {
           <section className="grid gap-6 md:grid-cols-3">
             <FeatureCard icon={Link2} title="URL Threat Scanner" desc="Animated risk gauge with critical-token detection." to="/url-checker" />
             <FeatureCard icon={MessageSquareText} title="Message Analyzer" desc="Glowing inline highlights of scam phrases." to="/text-scanner" />
-            <FeatureCard icon={FileText} title="PDF Offer Letter" desc="Loading orbit while scanning document rules." to="/pdf-analyzer" />
+            <FeatureCard icon={FileText} title="AI PDF Offer Letter Analyzer" desc="Semantic analysis of employment terms in uploaded offer letters." to="/pdf-analyzer" />
           </section>
         )}
 
