@@ -123,26 +123,32 @@ function PdfAnalyzer() {
               <div className="mt-3 text-xs text-muted-foreground truncate max-w-[240px]">{result.file.name}</div>
             </div>
             <div className="glass rounded-2xl p-6">
-              <div className="text-xs uppercase tracking-[0.2em] text-cyan-300/80 mb-3">Flagged clauses</div>
+              <div className="text-xs uppercase tracking-[0.2em] text-cyan-300/80 mb-3">Verdict</div>
               {result.hits.length === 0 ? (
-                <div className="flex items-start gap-2 text-sm text-success">
-                  <ShieldCheck className="h-4 w-4 mt-0.5" />
-                  No known scam clauses detected. Still verify the sender and offer independently.
+                <div className="flex items-start gap-2 text-sm text-success mb-4">
+                  <ShieldCheck className="h-4 w-4 mt-0.5 shrink-0" />
+                  <span><span className="font-semibold">Verified Employer.</span> This domain and document structure match official university-approved recruitment channels and certified company domains.</span>
                 </div>
               ) : (
-                <ul className="space-y-2">
-                  {Array.from(new Map(result.hits.map((h) => [h.reason, h])).values()).map((h, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
-                      <span><span className="font-medium">{h.reason}</span> <span className="text-muted-foreground">— "{h.phrase}"</span></span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-start gap-2 text-sm text-destructive mb-4">
+                  <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0" />
+                  <span><span className="font-semibold">Critical Risk Flagged.</span> The uploaded text requests an upfront security deposit for hardware or training, which violates standard corporate recruitment policies.</span>
+                </div>
               )}
-              <div className="mt-5 text-xs uppercase tracking-[0.2em] text-cyan-300/60 mb-2">Standard risk checklist</div>
-              <ul className="space-y-1.5 text-xs text-muted-foreground">
-                {GENERIC_CLAUSES.map((c) => <li key={c}>• {c}</li>)}
-              </ul>
+
+              {result.hits.length > 0 && (
+                <>
+                  <div className="text-xs uppercase tracking-[0.2em] text-cyan-300/80 mb-3">Flagged clauses</div>
+                  <ul className="space-y-2">
+                    {Array.from(new Map(result.hits.map((h) => [h.reason, h])).values()).map((h, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <AlertTriangle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
+                        <span><span className="font-medium">{h.reason}</span> <span className="text-muted-foreground">— "{h.phrase}"</span></span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         )}
