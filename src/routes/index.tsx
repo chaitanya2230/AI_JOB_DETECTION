@@ -81,7 +81,7 @@ function Index() {
             <MetricCard icon={Building2} label="Community reports" value={String(feed.length || 0) + "+"} tone="amber" />
             <FeatureCard icon={Link2} title="URL Threat Scanner" desc="Domain age, typosquatting, TLD spoofing — instant risk score." to="/url-checker" />
             <FeatureCard icon={MessageSquareText} title="Offer Message Analyzer" desc="Inline-highlights scam phrasing in WhatsApp / Telegram / email." to="/text-scanner" />
-            <FeatureCard icon={FileText} title="Offer Letter PDF X-Ray" desc="Drag & drop a PDF — flags risky clauses and bogus fees." to="/pdf-analyzer" />
+            <FeatureCard icon={FileText} title="AI PDF Offer Letter Analyzer" desc="Upload an appointment letter or training agreement to flag fraudulent fees and clauses." to="/pdf-analyzer" />
           </section>
         )}
 
