@@ -46,7 +46,7 @@ function Index() {
                 <span className="bg-gradient-to-r from-primary to-[#22D3EE] bg-clip-text text-transparent">for Job Scam Detection.</span>
               </h1>
               <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-                Scan suspicious links, decode shady messages, x-ray offer letter PDFs, and tap into a live community fraud feed — all from one neon-lit dashboard.
+                Scan suspicious links, decode shady recruiter messages, analyze offer-letter PDFs, and tap into a live community fraud feed — all from one dashboard built for students.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="btn-neon-hover"><Link to="/url-checker">Run a scan <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
