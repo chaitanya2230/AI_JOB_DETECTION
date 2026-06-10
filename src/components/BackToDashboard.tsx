@@ -6,7 +6,7 @@ export function BackToDashboard({ label = "Dashboard" }: { label?: string }) {
     <Link
       to="/"
       aria-label="Back to dashboard"
-      className="group absolute top-4 left-4 sm:top-6 sm:left-6 z-50 inline-flex items-center gap-2 rounded-xl border-2 px-3 py-2 text-sm font-semibold backdrop-blur-md transition-all duration-200 ease-out hover:-translate-x-1 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF]/70"
+      className="group relative z-10 inline-flex items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-semibold backdrop-blur-md transition-all duration-200 ease-out hover:-translate-x-1 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF]/70"
       style={{
         color: "#00F0FF",
         background: "linear-gradient(160deg, rgba(19,28,46,0.85), rgba(11,15,25,0.7))",
