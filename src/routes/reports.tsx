@@ -46,8 +46,8 @@ function Reports() {
       <div>
         <CyberBg />
         <Navbar />
-        <BackToDashboard />
-        <main className="mx-auto max-w-2xl px-6 py-20 text-center">
+        <main className="mx-auto max-w-2xl px-6 py-12 text-center">
+          <div className="mb-6 text-left"><BackToDashboard /></div>
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/15 text-primary"><Users className="h-7 w-7" /></div>
           <h1 className="mt-6 text-3xl font-bold">Sign in to view the fraud feed</h1>
           <p className="mt-3 text-muted-foreground">The community scam database is available to verified students.</p>
@@ -61,8 +61,8 @@ function Reports() {
     <div>
       <CyberBg />
       <Navbar />
-      <BackToDashboard />
       <main className="mx-auto max-w-5xl px-6 py-12">
+        <div className="mb-6"><BackToDashboard /></div>
         <div className="flex items-start justify-between gap-4 mb-8">
           <div>
             <div className="flex items-center gap-3">
