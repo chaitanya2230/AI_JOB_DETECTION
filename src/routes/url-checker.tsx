@@ -6,7 +6,7 @@ import { BackToDashboard } from "@/components/BackToDashboard";
 import { CyberBg } from "@/components/CyberBg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { RadarRing } from "@/components/RadarRing";
+
 import { RiskGauge } from "@/components/RiskGauge";
 import { scanUrl, type UrlScan } from "@/lib/scan-engine";
 
