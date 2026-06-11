@@ -10,7 +10,7 @@ import { useAuth } from "@/lib/auth-context";
 
 export const Route = createFileRoute("/auth")({
   component: AuthPage,
-  validateSearch: (s: Record<string, unknown>) => ({ redirect: (s.redirect as string) || "/reports" }),
+  validateSearch: (s: Record<string, unknown>) => ({ redirect: (s.redirect as string) || "/" }),
   head: () => ({ meta: [{ title: "Sign in — ScamShield" }] }),
 });
 
@@ -31,19 +31,23 @@ function AuthPage() {
     if (user) router.navigate({ to: search.redirect });
   }, [user, router, search.redirect]);
 
-  const ensureSignedIn = async (mail: string, pass: string) => {
-    // Try sign in first
-    const signIn = await supabase.auth.signInWithPassword({ email: mail, password: pass });
-    if (!signIn.error) return;
-    // Fallback: auto-create then sign in (handy for demo creds & first-time signups)
+  const signInOnly = async (mail: string, pass: string) => {
+    const { error } = await supabase.auth.signInWithPassword({ email: mail, password: pass });
+    if (error) throw error;
+  };
+
+  const signUpThenIn = async (mail: string, pass: string) => {
     const signUp = await supabase.auth.signUp({
       email: mail,
       password: pass,
-      options: { emailRedirectTo: `${window.location.origin}/reports` },
+      options: { emailRedirectTo: `${window.location.origin}/` },
     });
     if (signUp.error) throw signUp.error;
-    const retry = await supabase.auth.signInWithPassword({ email: mail, password: pass });
-    if (retry.error) throw retry.error;
+    // If email confirmation is off the user has a session already; otherwise sign in to obtain one.
+    if (!signUp.data.session) {
+      const retry = await supabase.auth.signInWithPassword({ email: mail, password: pass });
+      if (retry.error) throw retry.error;
+    }
   };
 
   const submitEmail = async (e: React.FormEvent) => {
@@ -51,14 +55,15 @@ function AuthPage() {
     setLoading(true);
     try {
       if (mode === "signup") {
-        await ensureSignedIn(email, password);
+        await signUpThenIn(email, password);
         toast.success("Account created — welcome!");
       } else {
-        await ensureSignedIn(email, password);
+        await signInOnly(email, password);
         toast.success("Welcome back");
       }
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Authentication failed");
+      const msg = err instanceof Error ? err.message : "Authentication failed";
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
@@ -69,7 +74,11 @@ function AuthPage() {
     setPassword(DEMO_PASSWORD);
     setLoading(true);
     try {
-      await ensureSignedIn(DEMO_EMAIL, DEMO_PASSWORD);
+      // Try sign in; if the demo account doesn't exist yet, create it once.
+      const first = await supabase.auth.signInWithPassword({ email: DEMO_EMAIL, password: DEMO_PASSWORD });
+      if (first.error) {
+        await signUpThenIn(DEMO_EMAIL, DEMO_PASSWORD);
+      }
       toast.success("Signed in as demo admin");
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Demo sign-in failed");
