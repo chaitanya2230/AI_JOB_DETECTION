@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 
 import { RiskGauge } from "@/components/RiskGauge";
 import { scanUrl, type UrlScan } from "@/lib/scan-engine";
+import { recordScan } from "@/lib/scan-history";
 
 export const Route = createFileRoute("/url-checker")({
   component: UrlChecker,
@@ -25,7 +26,12 @@ function UrlChecker() {
     if (!url.trim()) return;
     setLoading(true);
     setResult(null);
-    setTimeout(() => { setResult(scanUrl(url.trim())); setLoading(false); }, 800);
+    setTimeout(() => {
+      const r = scanUrl(url.trim());
+      setResult(r);
+      setLoading(false);
+      void recordScan({ scan_type: "url", target: r.domain || url.trim(), score: r.score, risk: r.risk });
+    }, 800);
   };
 
   return (
