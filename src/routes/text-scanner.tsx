@@ -51,7 +51,7 @@ function TextScanner() {
     const r = scanText(text);
     setResult(r);
     const preview = text.trim().slice(0, 80).replace(/\s+/g, " ") + (text.length > 80 ? "…" : "");
-    void recordScan({ scan_type: "text", target: preview, score: r.score, risk: r.risk });
+    recordScan({ scan_type: "text", target: preview, score: r.score, risk: r.risk, flags: r.flags });
   };
 
   return (
