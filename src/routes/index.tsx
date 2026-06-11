@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { CyberBg } from "@/components/CyberBg";
 import { Button } from "@/components/ui/button";
 import { RadarRing } from "@/components/RadarRing";
+import { ScanHistoryPanel } from "@/components/ScanHistoryPanel";
 import { supabase } from "@/integrations/supabase/client";
 import { formatDistanceToNow } from "date-fns";
 
@@ -75,13 +76,16 @@ function Index() {
         </div>
 
         {tab === "overview" && (
-          <section className="grid gap-6 md:grid-cols-3">
-            <MetricCard icon={Shield} label="Detection accuracy" value="98%" tone="green" />
-            <MetricCard icon={Activity} label="Live scans today" value="1,247" tone="cyan" />
-            <MetricCard icon={Building2} label="Community reports" value={String(feed.length || 0) + "+"} tone="amber" />
-            <FeatureCard icon={Link2} title="URL Threat Scanner" desc="Domain age, typosquatting, TLD spoofing — instant risk score." to="/url-checker" />
-            <FeatureCard icon={MessageSquareText} title="Offer Message Analyzer" desc="Inline-highlights scam phrasing in WhatsApp / Telegram / email." to="/text-scanner" />
-            <FeatureCard icon={FileText} title="AI PDF Offer Letter Analyzer" desc="Upload an appointment letter or training agreement to flag fraudulent fees and clauses." to="/pdf-analyzer" />
+          <section className="grid gap-6 lg:grid-cols-[1fr_360px] items-start">
+            <div className="grid gap-6 md:grid-cols-3">
+              <MetricCard icon={Shield} label="Detection accuracy" value="98%" tone="green" />
+              <MetricCard icon={Activity} label="Live scans today" value="1,247" tone="cyan" />
+              <MetricCard icon={Building2} label="Community reports" value={String(feed.length || 0) + "+"} tone="amber" />
+              <FeatureCard icon={Link2} title="URL Threat Scanner" desc="Domain age, typosquatting, TLD spoofing — instant risk score." to="/url-checker" />
+              <FeatureCard icon={MessageSquareText} title="Offer Message Analyzer" desc="Inline-highlights scam phrasing in WhatsApp / Telegram / email." to="/text-scanner" />
+              <FeatureCard icon={FileText} title="AI PDF Offer Letter Analyzer" desc="Upload an appointment letter or training agreement to flag fraudulent fees and clauses." to="/pdf-analyzer" />
+            </div>
+            <ScanHistoryPanel />
           </section>
         )}
 
