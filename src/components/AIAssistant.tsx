@@ -4,6 +4,10 @@ import { useNavigate } from "@tanstack/react-router";
 import { Bot, MessageSquare, Send, ShieldAlert, X, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { chatAssistant } from "@/lib/chat.functions";
+import { useAuth } from "@/lib/auth-context";
+
+const MONEY_RE = /\b(money|deposit|fee|fees|payment|laptop|hardware|equipment|kit)\b/i;
+const URL_RE = /(https?:\/\/|www\.|\b[a-z0-9-]+\.(com|in|net|org|co|io|xyz|info|site|online|link)\b|\blink\b|\burl\b)/i;
 
 type Msg = {
   id: string;
