@@ -38,7 +38,7 @@ function UrlChecker() {
     <div>
       <CyberBg />
       <Navbar />
-      <main className="mx-auto max-w-5xl px-6 py-12">
+      <main className="mx-auto max-w-[1600px] w-full px-8 py-12">
         <div className="mb-6"><BackToDashboard /></div>
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-2">

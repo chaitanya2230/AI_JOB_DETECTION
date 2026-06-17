@@ -34,7 +34,7 @@ function Index() {
     <div>
       <CyberBg />
       <Navbar />
-      <main className="mx-auto max-w-6xl px-6 pb-20">
+      <main className="mx-auto max-w-[1600px] w-full px-8 pb-20">
         {/* Hero */}
         <section className="pt-14 pb-10">
           <div className="grid gap-8 md:grid-cols-[1fr_auto] items-center">

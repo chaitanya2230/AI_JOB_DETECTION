@@ -15,7 +15,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[color-mix(in_oklab,var(--cyber-cyan)_18%,transparent)] bg-background/60 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-[1600px] w-full items-center justify-between px-8 py-4">
         <Link to="/" className="flex items-center gap-2 font-semibold text-lg tracking-tight">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/30 shadow-[0_0_16px_-2px_color-mix(in_oklab,var(--cyber-cyan)_50%,transparent)]">
             <Shield className="h-5 w-5" />
