@@ -7,6 +7,7 @@ import { lovable } from "@/integrations/lovable/index";
 import { toast } from "sonner";
 import { useAuth, setLocalUser, isAdminEmail } from "@/lib/auth-context";
 import { seedMockHistoryIfEmpty } from "@/lib/scan-history";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
   component: AuthPage,
@@ -57,8 +58,39 @@ function AuthPage() {
     }
     setLoading(true);
     try {
-      // Local-first auth: any valid email + password works. No external lockdown.
-      completeLogin(mail, mode);
+      if (mode === "signup") {
+        const { data, error } = await supabase.auth.signUp({
+          email: mail,
+          password: password,
+        });
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+        if (data.session) {
+          toast.success("Account created — welcome!");
+          seedMockHistoryIfEmpty();
+          router.navigate({ to: routeFor(mail) });
+        } else {
+          toast.success("Check your email for the confirmation link!");
+        }
+      } else {
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: mail,
+          password: password,
+        });
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+        toast.success("Welcome back");
+        if (data.session) {
+          seedMockHistoryIfEmpty();
+          router.navigate({ to: routeFor(mail) });
+        }
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Authentication failed");
     } finally {
       setLoading(false);
     }
@@ -69,7 +101,41 @@ function AuthPage() {
     setPassword(DEMO_PASSWORD);
     setLoading(true);
     try {
-      completeLogin(DEMO_EMAIL, "signin");
+      const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
+        email: DEMO_EMAIL,
+        password: DEMO_PASSWORD,
+      });
+
+      if (signInError) {
+        if (signInError.message.includes("Invalid login credentials") || signInError.message.includes("Email not confirmed")) {
+          // Attempt to sign up if it doesn't exist
+          const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+            email: DEMO_EMAIL,
+            password: DEMO_PASSWORD,
+          });
+          if (signUpError) {
+            toast.error(signUpError.message);
+            return;
+          }
+          toast.success("Admin demo account initialized!");
+          if (signUpData.session) {
+            seedMockHistoryIfEmpty();
+            router.navigate({ to: routeFor(DEMO_EMAIL) });
+          } else {
+            toast.info("Please confirm the admin email (or sign up enabled auto-confirm in Supabase).");
+          }
+        } else {
+          toast.error(signInError.message);
+        }
+      } else {
+        toast.success("Logged in as Admin Demo");
+        if (signInData.session) {
+          seedMockHistoryIfEmpty();
+          router.navigate({ to: routeFor(DEMO_EMAIL) });
+        }
+      }
+    } catch (err: any) {
+      toast.error(err.message || "Failed to log in as admin");
     } finally {
       setLoading(false);
     }
